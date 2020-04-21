@@ -18,6 +18,7 @@ const bstFromPreorder = (preorder) => {
         return root;
     };
 
+    // index should be passed by reference
     let index = 0;
     return dfs(preorder, Number.MAX_SAFE_INTEGER);
 };
