@@ -20,34 +20,24 @@
  * @return {number}
  */
 const leftMostColumnWithOne = (binaryMatrix) => {
-    const search = (binaryMatrix, x, C) => {
-        if (C == 0) return -1;
+    const [R, C] = binaryMatrix.dimensions();
+    let ans = C;
+
+    for (let i = 0; i < R; i++) {
         let lo = 0;
         let hi = C - 1;
-        let minIndex = C;
 
         while (lo <= hi) {
             const mid = lo + parseInt((hi - lo) / 2);
-            const el = binaryMatrix.get(x, mid);
 
-            if (el == 0) {
+            if (binaryMatrix.get(i, mid) == 0) {
                 lo = mid + 1;
             } else {
-                minIndex = Math.min(minIndex, mid);
+                ans = Math.min(ans, mid);
                 hi = mid - 1;
             }
         }
-
-        return minIndex == C ? -1 : minIndex;
-    };
-
-    const [R, C] = binaryMatrix.dimensions();
-    let ans = Infinity;
-
-    for (let i = 0; i < R; i++) {
-        const index = search(binaryMatrix, i, C);
-        if (index >= 0) ans = Math.min(ans, index);
     }
 
-    return ans == Infinity ? -1 : ans;
+    return ans == C ? -1 : ans;
 };
