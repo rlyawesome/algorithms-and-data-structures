@@ -5,6 +5,7 @@
 const minPathSum = (grid) => {
     const R = grid.length;
     const C = grid[0].length;
+    // @TODO: change to for loop
     const dp = new Array(R).fill(new Array(C).fill(0));
 
     for (let i = 0; i < R; ++i) {
