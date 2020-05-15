@@ -3,17 +3,17 @@
  * @return {boolean}
  */
 const checkStraightLine = (coordinates) => {
-    const calcSlope = (first, second) => {
-        return (second[1] - first[1]) / (second[0] - first[0]);
-    };
+    const x0 = coordinates[0][0];
+    const y0 = coordinates[0][1];
+    const x1 = coordinates[1][0];
+    const y1 = coordinates[1][1];
+    const dx = x1 - x0;
+    const dy = y1 - y0;
 
-    if (coordinates.length < 3) return true;
-    const slope = calcSlope(coordinates[0], coordinates[1]);
-
-    for (let i = 2; i < coordinates.length; i++) {
-        if (calcSlope(coordinates[i - 1], coordinates[i]) != slope) {
-            return false;
-        }
+    for (const co of coordinates) {
+        const x = co[0];
+        const y = co[1];
+        if (dx * (y - y1) != dy * (x - x1)) return false;
     }
 
     return true;
